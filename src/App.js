@@ -31,10 +31,11 @@ function App() {
   }
 
   function handleDeleteGoblin(name) {
+    const index = allGoblins.findIndex(allGoblins.goblin.name === name);
     // find the index of the goblin in allGoblins with this name
-
+    const newGoblins = allGoblins.splice(index, 1);
     // use splice to delete the goblin object at this index
-
+    setAllGoblins(newGoblins);
     // update the allGoblins array immutably to this new, smaller array
   }
 
@@ -49,12 +50,12 @@ function App() {
   return (
     <div className="App">
       <div className='current-goblin quarter'>
-        <Goblin goblin={{
+        <Goblin goblin={{ name: goblinFormName, HP: goblinFormHP, color: goblinFormColor,
           /* 
             use the goblin form state to make a goblin object and to display it. 
             This will let the user see the current form state 
           */
-        }}/>
+        }} handleDeleteGoblin={handleDeleteGoblin} />
       </div>
       <div className='goblin-filter quarter'>
         Filter Goblins
