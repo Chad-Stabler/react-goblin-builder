@@ -5,10 +5,10 @@ import Goblin from './Goblin';
 import { useState } from 'react';
 
 function App() {
-  const [visibleGoblins, setVisibleGoblins] = useState([]);
   const [allGoblins, setAllGoblins] = useState([]);
+  const [visibleGoblins, setVisibleGoblins] = useState([allGoblins]);
   const [goblinFormName, setGoblinFormName] = useState('');
-  const [goblinFormHP, setGoblinFormHP] = useState('');
+  const [goblinFormHP, setGoblinFormHP] = useState(0);
   const [goblinFormColor, setGoblinFormColor] = useState('blue');
 
   /* 
@@ -22,20 +22,23 @@ function App() {
   
   function submitGoblin(e) {
     e.preventDefault();
-    
+    const goblin = { name: goblinFormName, HP: goblinFormHP, color: goblinFormColor, };
     // on submit, make a new goblin object with a name that comes from the form state, an hp that comes from the form state, and a color that comes from the form state
-
+    allGoblins.push(goblin);
     // update the allGoblins array. Add the new goblin to the allGoblins array immutably.
-    
+    setAllGoblins(allGoblins.slice());
+    setGoblinFormColor('');
+    setGoblinFormHP(0);
+    setGoblinFormName('');
     // clear out the goblin form state items by setting them to empty strings. This will cause the form to reset in the UI.
   }
 
   function handleDeleteGoblin(name) {
-    const index = allGoblins.findIndex(allGoblins.goblin.name === name);
+    const index = allGoblins.findIndex(goblin => goblin.name === name);
     // find the index of the goblin in allGoblins with this name
-    const newGoblins = allGoblins.splice(index, 1);
+    allGoblins.splice(index, 1);
     // use splice to delete the goblin object at this index
-    setAllGoblins(newGoblins);
+    setAllGoblins([...allGoblins]);
     // update the allGoblins array immutably to this new, smaller array
   }
 
@@ -72,7 +75,7 @@ function App() {
         setGoblinFormHP={setGoblinFormHP}
       />
       <GoblinList 
-        goblins={[]} // this takes in an array of goblins. If the filteredGoblins has a length, use that array. Otherwise, use the allGoblins array 
+        goblins={allGoblins} // this takes in an array of goblins. If the filteredGoblins has a length, use that array. Otherwise, use the allGoblins array 
         handleDeleteGoblin={handleDeleteGoblin} // note that the goblin list has access to the ability to delete
       />
     </div>
