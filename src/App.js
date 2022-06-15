@@ -61,12 +61,12 @@ function App() {
   return (
     <div className="App">
       <div className='current-goblin quarter'>
-        <Goblin goblin={{ name: goblinFormName, HP: goblinFormHP, color: goblinFormColor,
+        <Goblin goblin={{ name: goblinFormName, HP: goblinFormHP, color: goblinFormColor
           /* 
             use the goblin form state to make a goblin object and to display it. 
             This will let the user see the current form state 
           */
-        }} handleDeleteGoblin={handleDeleteGoblin} />
+        }} />
       </div>
       <div className='goblin-filter quarter'>
         Filter Goblins
