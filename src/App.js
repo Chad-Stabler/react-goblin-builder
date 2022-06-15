@@ -63,17 +63,13 @@ function App() {
         <input onChange={(e) => handleFilterGoblins(e.target.value)} />
       </div>
       <GoblinForm 
-        /*
-        This component takes in a ton of props! 
-        Here is the list of props to pass:
-          submitGoblin,
-          goblinFormName, 
-          setGoblinFormName,
-          goblinFormColor, 
-          setGoblinFormColor,
-          goblinFormHP, 
-          setGoblinFormHP,
-        */
+        submitGoblin={submitGoblin} 
+        goblinFormName={goblinFormName} 
+        setGoblinFormName={setGoblinFormName} 
+        goblinFormColor={goblinFormColor} 
+        setGoblinFormColor={setGoblinFormColor} 
+        goblinFormHP={goblinFormHP} 
+        setGoblinFormHP={setGoblinFormHP}
       />
       <GoblinList 
         goblins={[]} // this takes in an array of goblins. If the filteredGoblins has a length, use that array. Otherwise, use the allGoblins array 
